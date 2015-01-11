@@ -18,6 +18,8 @@ $(document).ready(function($){
 	//Делим остаток на кол-во табов
 	var marginTabs = (delta / tabWidths.length)/2;
 
+	//Округляем до целого числа
+	marginTabs = Math.floor(marginTabs)*100/100;
 
 	// присваиваем каждому элементу отступ справа и слева
 	$("#nav li").each(function(i, val) {

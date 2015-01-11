@@ -11,5 +11,13 @@
 
 li{
   display: inline-block;
-  border-left: 1px solid #F00;
+  border-right: 1px solid red;
+}
+
+li:first-child{
+  border-left: 1px solid red;
+}
+
+li:last-child{
+  border-left: none;
 }

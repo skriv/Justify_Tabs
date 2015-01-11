@@ -7,8 +7,8 @@ var tabsCount = 0;
 $(document).ready(function($){
 
 	var freeplace = calculatePercent();
-	//Округляем до целого числа
-	freeplace = Math.floor(freeplace)*100/100;
+	//Округляем до целого числа + 0.545
+	freeplace = (Math.floor(freeplace)*100/100);
 	console.log("freeplace " + freeplace);
 	
 	// присваиваем каждому элементу отступ справа и слева

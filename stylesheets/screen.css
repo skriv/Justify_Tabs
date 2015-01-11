@@ -1,11 +1,18 @@
 *{
   margin: 0;
   padding: 0;
+  font-family: Arial;
+  font-size: 12px;
+}
+
+body{
+  margin:20px;
 }
 
 #wrapper{
   width: 960px;
   background-color: #e7e2e2;
+  margin: 0 auto;
 }
 
 ul{
@@ -15,6 +22,8 @@ ul{
 li{
   display: inline-block;
   border-right: 1px solid red;
+  height: 41px;
+  line-height: 41px;
 }
 
 li:first-child{

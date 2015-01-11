@@ -1,16 +1,33 @@
 var tabWidths = [];
 var tabWidthRunningSum = [];
-var vieportWidth = 0;
-var menuTabs = 0;
 
-$(document).ready(function($)){
+var viewportWidth = 0;
+var tabsCount = 0;
+
+$(document).ready(function($){
 	viewportWidth = $("#wrapper").innerWidth();
+
+	//Ширина всех табов
 	var totalWidth = calculateTabWidths();
 
+	console.log(viewportWidth);
 
+	//Определяем остаток от общей длинны контейнера
+	var delta = viewportWidth - totalWidth;
+	
+	//Делим остаток на кол-во табов
+	var marginTabs = (delta / tabWidths.length)/2;
+
+
+	// присваиваем каждому элементу отступ справа и слева
+	$("#nav li").each(function(i, val) {
+		$(val).css({"padding-left": + marginTabs + "px", "padding-right": + marginTabs + "px"});
+	});
 
 });
 
+
+//Ширина всех табов
 calculateTabWidths = function() {
 	var totalWidth = 0;
 	
@@ -23,7 +40,5 @@ calculateTabWidths = function() {
 	    
 	    totalWidth += tabWidths[i];
 	});
-	return totalWidth;
-
-	console.log(totalWidth);
+	return totalWidth;	
 }

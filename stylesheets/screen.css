@@ -8,6 +8,9 @@
   background-color: #e7e2e2;
 }
 
+ul{
+  width: 100%;
+}
 
 li{
   display: inline-block;

@@ -5,29 +5,44 @@ var viewportWidth = 0;
 var tabsCount = 0;
 
 $(document).ready(function($){
+
+	var freeplace = calculatePercent();
+	//Округляем до целого числа
+	freeplace = Math.floor(freeplace)*100/100;
+	console.log("freeplace " + freeplace);
+	
+	// присваиваем каждому элементу отступ справа и слева
+	$("#nav li").each(function(i, val) {
+		$(val).css({"padding-left": + freeplace + "%", "padding-right": + freeplace + "%"});
+	});
+
+});
+
+
+//Определяем ширину свободного места в процентах от общей ширины
+
+calculatePercent = function(){
+	//Ширины контейнера в РХ
 	viewportWidth = $("#wrapper").innerWidth();
 
 	//Ширина всех табов
 	var totalWidth = calculateTabWidths();
 
-	console.log(viewportWidth);
+	// Считаем проценты
+	var delta = 100 -((totalWidth * 100)/viewportWidth);
+	var percent = (delta / tabWidths.length)/2;
 
-	//Определяем остаток от общей длинны контейнера
-	var delta = viewportWidth - totalWidth;
-	
-	//Делим остаток на кол-во табов
-	var marginTabs = (delta / tabWidths.length)/2;
 
-	//Округляем до целого числа
-	marginTabs = Math.floor(marginTabs)*100/100;
+	//Cчитаем проценты полосочек 
+	//var border = tabWidths.length + 1;
 
-	// присваиваем каждому элементу отступ справа и слева
-	$("#nav li").each(function(i, val) {
-		$(val).css({"padding-left": + marginTabs + "px", "padding-right": + marginTabs + "px"});
-	});
+	console.log("Ширины контейнера " + viewportWidth);
+	console.log("Ширина всех табов " + totalWidth);
+	console.log("Проценты " + delta);
+	console.log("Padding " + percent);
 
-});
-
+	return percent;	
+}
 
 //Ширина всех табов
 calculateTabWidths = function() {

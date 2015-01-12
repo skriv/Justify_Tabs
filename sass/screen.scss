@@ -27,10 +27,11 @@ body{
 
     li{
     	height: $navHeight;
-    	@include flex(0 1 auto);
     	overflow: hidden;
-    	@include align-self(center);
     	line-height: 37px;
+    	@include align-self(center);
+    	display: inline-block; /* non-flexbox browsers */
+    	@include flex(0 0 auto);
 
     	&:nth-child(even) {
 	    	@include opacity(0.2);

@@ -1,0 +1,42 @@
+@import "compass/reset";
+@import "compass/css3";
+
+$navHeight:40px;
+
+body{
+	font-family: Arial;
+	font-size: 16px;
+	color:white;
+}
+
+#wrapper{
+	background-color: grey;
+	height: $navHeight;
+}
+
+#nav{
+	width:960px;
+	height: auto;
+	margin: 0 auto;
+	padding: 0 10px;
+  	text-align: center;
+  	@include display-flex(flex);
+  	@include flex-wrap(nowrap);
+    @include align-items(center);
+    @include justify-content(space-between);
+
+    li{
+    	height: $navHeight;
+    	@include flex(0 1 auto);
+    	overflow: hidden;
+    	@include align-self(center);
+    	line-height: 37px;
+
+    	&:nth-child(even) {
+	    	@include opacity(0.2);
+	    	font-size: 38px;
+	    	line-height: 33px;
+			width: 5px;
+    	}
+    }
+}

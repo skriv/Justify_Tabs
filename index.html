@@ -3,24 +3,75 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-	<title>Justify Tabs CSS</title>
+	<script src="js/jquery-2.1.3.min.js"></script>
+	<title>Justify Flexbox (space-between) Tabs</title>
 </head>
 
 <body>
-	<div id="wrapper" role="navigation">
+	<div id="wrapper">
 		<ul id="nav">
-			<li>Акции дня
-			<li>
-			<li>Услуги
-			<li>
-			<li>Товары
-			<li>
-			<li>Отдых
-			<li>
-			<li>Иссык-Куль
-			<li>
-			<li>Новогодние акции
+			<li>Number 1
+			<li class="divider">
+			<li> 2
+			<li class="divider">
+			<li>Number 3
+			<li class="divider">
+			<li>4 short
+			<li class="divider">
+			<li>Number 5
+			<li class="divider">
+			<li>Number 6 very long
+			<li class="divider">
+			<li>Number 5
 		</ul>
 	</div>
 </body>
+<script>
+
+	$( document ).ready(function() {
+
+		//Определяем общую ширину контейнера
+		var navWidth = $("#nav").innerWidth();
+
+		//кол-во табов
+		var list = $("#nav li:not(.divider)");
+
+
+		//Общая ширина всех лементов
+		contentWidth = calculateTabWidths();
+
+
+		//Delta (отнимаем -1 так как 1 и посл елементу будет добавлять по половинке)
+		gapWidth = (navWidth - contentWidth) / list.length - 1;
+	 
+
+		//Раставляем падинги
+		list.each(function(i, val) {
+			var $val = $(val);
+
+			if (i === 0 || (i === list.length - 1)) {
+				$val.width($val.width() + Math.floor(gapWidth / 2))
+			} else {
+				$val.width($val.width() + Math.floor(gapWidth))
+			}
+		});
+	});
+
+
+calculateTabWidths = function() {
+	var totalWidth = 0;
+	var tabWidths = [];
+	var tabWidthRunningSum = [];
+	
+	$("#nav li").each(function(i, val) {
+	    tabWidths[i] = $(val).innerWidth();
+	    tabWidthRunningSum[i] = tabWidths[i];
+	    if (i > 0) {
+		    tabWidthRunningSum[i] = tabWidthRunningSum[i] + tabWidthRunningSum[i-1];
+	    }
+	    totalWidth += tabWidths[i];
+	});
+	return totalWidth;
+}
+</script>
 </html>

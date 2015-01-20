@@ -18,19 +18,24 @@ body{
 	width:960px;
 	height: auto;
 	margin: 0 auto;
-	padding: 0 10px;
   	text-align: center;
   	@include display-flex(flex);
     @include flex-direction(row);
   	@include flex-wrap(nowrap);
     @include align-items(baseline);
     @include justify-content(space-between);
+    flex-grow:1;
 
     li{
-    	line-height: $navHeight;
+        height:$navHeight - 1;
+    	line-height: $navHeight - 1;
     	display: inline-block; /* non-flexbox browsers */
         @include align-self(center);
-    	@include flex(0 0 auto);
+    	@include flex(0 1 auto);
+
+        text-align: center;
+        overflow: hidden;
+        cursor: pointer;
 
     	&:nth-child(even) {
 	    	@include opacity(0.2);
@@ -38,5 +43,21 @@ body{
 			width: 1px;
             height: $navHeight - 15px;
     	}
+
+        &:first-child{
+            text-align: left;
+            border-bottom:1px solid red;
+        }
+
+        &:last-child{
+            text-align: right;
+        }
+
+        &:hover{
+            color:black;
+        }
     }
 }
+
+
+
